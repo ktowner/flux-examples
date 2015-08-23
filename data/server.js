@@ -1,9 +1,15 @@
 var express = require('express');
 var app = express();
+var sampleApiResponse = require('./api/response.json');
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/dist/index.html');
 });
+
+app.get('/api/', function (req, res) {
+	res.send(sampleApiResponse);
+});
+
 
 app.use(express.static('dist'));
 
