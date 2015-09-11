@@ -4,6 +4,7 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
+var Navigation = require('./navigation');
 
 function getMessage() {
   return AppStore.getMessage();
@@ -25,7 +26,8 @@ var App = React.createClass({
     render:function(){
       return (
         <div className="wrapper">
-          <RouteHandler />
+        	<Navigation />
+        	<RouteHandler />
         </div>
       )
     },

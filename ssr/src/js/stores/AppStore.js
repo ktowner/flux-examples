@@ -38,9 +38,9 @@ AppDispatcher.register(function(payload){
   var action = payload.action;
   var actionType = action.actionType;
   var data = action.text;
-
+  
   dataStructure.message = data;
-
+  
   AppStore.emitChange();
   return true;
 });

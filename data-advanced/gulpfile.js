@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var concat = require('gulp-concat');
 var nodemon = require('gulp-nodemon');
+var run = require('gulp-run');
 
 gulp.task('browserify', function() {
     gulp.src('src/js/main.js')
@@ -23,8 +24,13 @@ gulp.task('start', function () {
   })
 });
 
-gulp.task('default',['browserify', 'copy', 'start', 'watch']);
+/*gulp.task('start2', function(){
+	run('node server.js').exec();
+});*/
 
 gulp.task('watch', function() {
     gulp.watch('src/**/*.*', ['default']);
 });
+
+
+gulp.task('default',['browserify', 'copy', 'start']);

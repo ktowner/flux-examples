@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production' &&
 
 var React = require('react');
 var Env = require('react/lib/ExecutionEnvironment');
+var AppActions = require('./actions/AppActions');
 
 // Not ideal to use createFactory, but don't know how to use JSX to solve this
 // Posted question at: https://gist.github.com/sebmarkbage/ae327f2eda03bf165261
@@ -13,6 +14,7 @@ var App = React.createFactory(require('./components/app.js'));
 
 Application = {
 	start : function () {
+			
 			if(Env.canUseDOM){
 				React.render(App(), document.getElementById('main'));
 			}else{

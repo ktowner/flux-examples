@@ -11,8 +11,13 @@ var App = React.createClass({
     handleClick:function(){
       AppActions.saySomething('Hello World');
     },
+    
+    getInitialState: function(){
+    	return {text: "Server Side Text"};
+    },
 
     componentDidMount: function() {
+    	this.setState({text: "Client Side Text"});
       AppStore.addChangeListener(this.onChange);
     },
 
@@ -23,7 +28,7 @@ var App = React.createClass({
     render:function(){
       return (
         <div className="wrapper">
-          <h3 onClick={this.handleClick}>Click Here to Say Something</h3>
+          <h3 onClick={this.handleClick}>{this.state.text}</h3>
         </div>
       )
     },

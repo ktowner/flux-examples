@@ -6,10 +6,6 @@ var	RouteHandler = Router.RouteHandler;
 var	Link = Router.Link;
 
 var Navigation = React.createClass({
-	/*contextTypes: {
-		router: React.propTypes.func
-	},*/
-
 	render: function() {
 		return (
 			<nav>
@@ -19,7 +15,6 @@ var Navigation = React.createClass({
 	              <li><Link to="portfolio">Portfolio</Link></li>
 	              <li><Link to="contact">Contact</Link></li>
 	            </ul>
-	            <RouteHandler />
 			</nav>
 		)
 	}

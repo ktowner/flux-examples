@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
 
 	var markup = Application.start();
 	
-  	res.render('app', {title: "Flux SSR", app: markup, start: "console.log(Application); Application.start();"});
+  	res.render('app', {title: "Flux SSR", app: markup, start: "Application.start();"});
 });
 
 app.use(express.static('dist'));

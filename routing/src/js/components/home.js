@@ -25,7 +25,6 @@ var App = React.createClass({
     render:function(){
       return (
         <div className="wrapper">
-          <Navigation />
           <h1>This is the home page</h1>
           <p onClick={this.handleClick}>Click Here to Say Something</p>
         </div>
