@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Navigation = require('./navigation');
 
 var About = React.createClass({
 	render: function() {

@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Navigation = require('./navigation');
 
 var Contact = React.createClass({
 	render: function() {
