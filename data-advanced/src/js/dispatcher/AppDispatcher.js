@@ -7,7 +7,7 @@ var AppDispatcher = assign(new Dispatcher(), {
     this.dispatch({
       source: 'VIEW_ACTION',
       actionType: action.actionType,
-  	  payload: action.text || null
+  	  payload: action.text || action.id || null
     });
   },
 

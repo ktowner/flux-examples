@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppActions = require('../actions/AppActions');
+var AppStore = require('./AppStore');
 var EventEmitter = require('events').EventEmitter;
 var AppConstants = require('../constants/AppConstants');
 var assign = require('object-assign');
@@ -12,6 +13,12 @@ var counts = {
   total: 0
 };
 
+function setUpCountStore(array) {
+	array.forEach(function (id) {
+		counts[id] = 0;
+	});
+}
+
 var CardClickStore = assign({}, EventEmitter.prototype, {
   emitChange: function(type) {
     this.emit(type);
@@ -19,6 +26,10 @@ var CardClickStore = assign({}, EventEmitter.prototype, {
 
   getTotal: function() {
     return counts.total;
+  },
+  
+  getCardClickById: function(id) {
+  	return counts[id];
   },
 
   /**
@@ -46,6 +57,7 @@ AppDispatcher.register(function(obj){
       break;
     case 'CARD_CLICK':
       counts.total = ++counts.total;
+      counts[obj.payload] = ++counts[obj.payload];
       CardClickStore.emitChange(CHANGE_EVENT);
       break;
     case 'SOCKET_ACTION':
@@ -56,6 +68,13 @@ AppDispatcher.register(function(obj){
       break;
   }
   return true;
+});
+
+CardClickStore.dispatchToken = AppDispatcher.register(function(obj){
+	if(obj.actionType === 'SERVER_ACTION') {
+		AppDispatcher.waitFor([AppStore.dispatchToken]);
+		setUpCountStore(AppStore.getAllCardIds());
+	}
 });
 
 module.exports = CardClickStore;

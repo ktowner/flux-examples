@@ -16,9 +16,10 @@ var AppActions = {
 	    });
 	 },
 
-	 cardClick: function() {
+	 cardClick: function(id) {
 	 	AppDispatcher.handleViewAction({
-	 		actionType: AppConstants.CARD_CLICK
+	 		actionType: AppConstants.CARD_CLICK,
+	 		id: id
 	 	});
 	 },
 

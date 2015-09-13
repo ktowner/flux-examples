@@ -9,6 +9,7 @@ var http = require('http');
 var CHANGE_EVENT = 'change';
 
 var dataStructure = {};
+var ids = [];
 
 var AppStore = assign({}, EventEmitter.prototype, {
   emitChange: function(type) {
@@ -36,6 +37,28 @@ var AppStore = assign({}, EventEmitter.prototype, {
   getCards: function() {
     return dataStructure.cards;
   },
+  
+  getAllCardIds: function() {
+  	this.getCardIds(dataStructure.cards);
+  	return ids;
+  },
+  
+  getCardIds: function(cards) {
+  	var self = this;
+  	cards.forEach(function(card) {
+  		ids.push(card.id);
+  		if(self.hasCards(card)){
+  			self.getCardIds(card.cards)
+  		}
+  	});
+  },
+  
+  hasCards: function(card) {
+  	if(card.hasOwnProperty('cards') && Array.isArray(card.cards) && card.cards.length > 0){
+  		return true;
+  	}
+  	return false;
+  },
 
   /**
    * @param {function} callback
@@ -54,7 +77,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
 
 });
 
-AppDispatcher.register(function(obj){
+AppStore.dispatchToken = AppDispatcher.register(function(obj){
   var actionSource = obj.source;
   var actionType = obj.actionType;
   

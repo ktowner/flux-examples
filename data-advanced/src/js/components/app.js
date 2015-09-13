@@ -40,7 +40,7 @@ var App = React.createClass({
 
     render: function() {
     	var tlcards = this.state.cards.map(function(obj) {
-    			return <Card key={obj.id} title={obj.title} media={obj.media} copy={obj.copy} links={obj.links} cards={obj.cards} />
+    			return <Card key={obj.id} id={obj.id} title={obj.title} media={obj.media} copy={obj.copy} links={obj.links} cards={obj.cards} />
     	});
       return (
         <div className="wrapper">
